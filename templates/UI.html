@@ -9,19 +9,15 @@
     </head>
     <body>
             <div id="UI" class="float_left">
-                <button  id="sign_in">Sign in</button>
+                <!-- <button  id="sign_in">Sign in</button> -->
                 <br>
-                <h4>You are {{post}} from {{group}}</h4>
+                <h4>You, {{nm}}, are {{dev1[3]}} from {{dev1[-2]}}</h4>
                 <br>
-                <div class="float_left" id="dropmenu">
+                <!-- <div class="float_left" id="dropmenu">
                     <button id="menu" >Users</button>
                     <div id="list_menu">
                         <a href="">AAAAAAAAAAA</a>
-                        <a href="">AAAAAAAAAAA</a>
-                        <a href="">AAAAAAAAAAA</a>
-                        <a href="">AAAAAAAAAAA</a>
-                        <a href="">AAAAAAAAAAA</a>
-                        <a href="">AAAAAAAAAAA</a>
+
                     </div>
                 </div>
                 
@@ -31,7 +27,7 @@
                         <a href="">AAAAAAAAAAA</a>
 
                     </div>
-                </div>
+                </div> -->
                 <br>
                 <div class="table" id="tb1">
                     <table>
@@ -39,36 +35,49 @@
                         <th>Users</th>
                         <th>Post</th>
                     </tr>
+                    {% for i in us %}
+                    <tr>
+
+                        <th>{{i[1]}}</th>
+                        <th>{{i[3]}}</th>
+                    </tr>
+                    {% endfor %}
                 </table>
 
                 </div>
                 
+                
             </div>
+            <a class="float_left" href="/add_task" style="text-decoration: none;"><h1 style="color: white">+</h1></a>
             <div class="float_left" >
-            <h1 style="text-align: center">To do</h1>
-             <div class="table" id="tb2">
-                <table>
-                    <tr>
-                        <th>Task</th>
-                        <th>Executer</th>
-                        <th>Actions</th>
-                    </tr>    
-                    <tr>
-                        <th>Write documentation</th>
-                        <th>Max</th>
+                <h1 style="text-align: center">To do</h1>
+                <div class="table" id="tb2">
+                    <table>
+                        
+                        <tr>
+                            <th>Task</th>
+                            <th>Executer</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for t in tsk %}
 
-                        <th style="width: width: min-content">
-                            <div class="float_left">
-                                <button id="btnAc" >✏️</button>
-                                <br>
-                                <button id="btnAc">🗑️</button>
-                            </div>
-                            <button id="btnAc" style="height: 45px" class="float_left"> ➡️ </button>
-                        </th>
-                    </tr>    
-                </table>
-
-            </div>
+                            <tr>
+                                <th>{{t[1]}}</th>
+                                <th>{{t[2]}}</th>
+                                
+                                <th style="width:  min-content">
+                                    <div class="float_left">
+                                        <a style="text-decoration: none" href="/edit/{{t[0]}}"><button id="btnAc" >✏️</button>
+                                        <br>
+                                        <a style="text-decoration: none" href="/delete/{{t[0]}}"><button id="btnAc">🗑️</button></a>
+                                    </div>
+                                    <a style="text-decoration: none" href="/transform/{{t[0]}}"><button id="btnAc" style="height: 45px" class="float_left"> ➡️ </button></a>
+                                </th>
+                            </tr>    
+                        {% endfor %}    
+                    </table>
+                    
+                </div>
             </div>
             <div class="float_left" >
             <h1 style="text-align: center">In process</h1>
@@ -79,19 +88,23 @@
                         <th>Executer</th>
                         <th>Actions</th>
                     </tr>    
-                    <tr>
-                        <th>Write documentation Write documentationWrite documentation</th>
-                        <th>Max</th>
+                        {% for t2 in tsk2 %}
 
-                        <th style="width: width: min-content">
-                            <div class="float_left">
-                                <button id="btnAc" >✏️</button>
-                                <br>
-                                <button id="btnAc">🗑️</button>
-                            </div>
-                            <button id="btnAc" style="height: 45px" class="float_left"> ➡️ </button>
-                        </th>
-                    </tr>    
+                            <tr>
+                                <th>{{t2[1]}}</th>
+                                <th>{{t2[2]}}</th>
+                                
+                                <th style="width:  min-content">
+                                    <div class="float_left">
+                                        <a style="text-decoration: none" href="/edit/{{t2[0]}}"><button id="btnAc" >✏️</button>
+                                        <br>
+                                        <a style="text-decoration: none" href="/delete/{{t2[0]}}"><button id="btnAc">🗑️</button></a>
+                                    </div>
+                                    <a style="text-decoration: none" href="/transform1/{{t2[0]}}"><button id="btnAc" style="height: 45px" class="float_left"> ➡️ </button></a>
+                                </th>
+                            </tr>    
+                        {% endfor %}  
+                              
                 </table>
 
             </div>
@@ -105,23 +118,22 @@
                         <th>Executer</th>
                         <th>Actions</th>
                     </tr>    
-                    <tr>
-                        <th>Write documentation Write documentation Write documentation Write documentation </th>
-                        <th>Max</th>
+                        {% for t3 in tsk3 %}
 
-                        <th style="width: width: min-content">
-                            <div class="float_left">
-                                <button id="btnAc" >✏️</button>
-                                <button id="btnAc">🗑️</button>
-                            </div>
-                            
-                        </th>
-                    </tr>    
+                            <tr>
+                                <th>{{t3[1]}}</th>
+                                <th>{{t3[2]}}</th>
+                                
+                                <th style="width:  min-content">
+                                    <div class="float_left">
+                                        <a style="text-decoration: none" href="/edit/{{t3[0]}}"><button id="btnAc" >✏️</button></a>
+                                        <br>
+                                        <a style="text-decoration: none" href="/delete/{{t3[0]}}"><button id="btnAc">🗑️</button></a>
+                                    </div>
+                            </tr>    
+                        {% endfor %}
                 </table>
-
             </div>
             </div>
-            
-
     </body>
 </html>
