@@ -8,7 +8,7 @@ jobs:
     runs-on: ubunut-latest
     strategy:
       matrix:
-      - versions : ["3.14", "3.13", "3.12"] 
+       versions : ["3.14", "3.13", "3.12"] 
     container:
       image: app:1
     steps:
