@@ -6,12 +6,15 @@ on:
 jobs:
   import:
     runs-on: ubunut-latest
+    strategy:
+      matrix:
+      - versions : ["3.14", "3.13", "3.12"] 
     container:
       image: app:1
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.13' 
+          python-version: ${{ matrix.versions }} 
       - run: pip install flask Flask-JWT-Extended bcrypt
 
