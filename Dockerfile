@@ -5,7 +5,7 @@ LABEL puplish="14.05.2026"
 
 WORKDIR /Rep
 
-COPY . 
+COPY . .
 
 RUN pip install flask Flask-JWT-Extended bcrypt
 

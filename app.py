@@ -23,15 +23,6 @@ def conn():
     con=sql.connect("sqlite.db")
     cur=con.cursor()
     return  con, cur
-def access():
-    hs=socket.gethostbyname(socket.gethostname())
-    con, cur=conn()
-    cur.execute(f"SELECT * FROM Users WHERE device='{hs}'")
-    aa=cur.fetchall()
-    cur.close()
-    con.close()
-    if aa is None:
-        return render_template("index.html", err="You need to sign up for getting an access")
 
 def none_to_0(i):
     if i is None:
@@ -41,6 +32,16 @@ def none_to_0m(i):
     if i is None:
         return []
     return i
+
+def access():
+    hs=socket.gethostbyname(socket.gethostname())
+    con, cur=conn()
+    cur.execute(f"SELECT * FROM Users WHERE device='{hs}'")
+    aa=cur.fetchall()
+    cur.close()
+    con.close()
+    if aa is None:
+        return render_template("index.html", err="You need to sign up for getting an access")
 
 def is_teamlead():
     con, cur= conn()
@@ -109,7 +110,6 @@ def reg_post():
 @app.route("/add_task", methods=["POST", "GET"])
 # @jwt_required
 def post_reg():
-    access()
     con, cur=conn()
     dev=socket.gethostbyname(socket.gethostname())
     cur.execute(f"SELECT * FROM Users where device='{dev}'")
@@ -131,7 +131,6 @@ def post_reg():
 @app.route("/home")#, methods=["POST"])
 @jwt_required()
 def ui():
-    access()
     con, cur=conn()
     dev=socket.gethostbyname(socket.gethostname())
     cur.execute(f"SELECT * FROM Users where device='{dev}'")
@@ -159,7 +158,6 @@ def ui():
 
 @app.route("/transform/<int:id>")
 def tran(id):
-    access()
     is_teamlead()
     con, cur=conn()
     cur.execute(f"UPDATE Tasks SET types='a' WHERE id={id};")
@@ -170,7 +168,6 @@ def tran(id):
 
 @app.route("/transform1/<int:id>")
 def tran1(id):
-    access()
     is_teamlead()
     con, cur=conn()
     cur.execute(f"UPDATE Tasks SET types='b' WHERE id={id};")
@@ -180,7 +177,6 @@ def tran1(id):
     return redirect(url_for("ui"))
 @app.route("/edit/<int:id>", methods=["POST", "GET"])
 def edit(id):
-    access()
     is_teamlead()
     dev=socket.gethostbyname(socket.gethostname())
     cur.execute(f"SELECT * FROM Users where device='{dev}'")
@@ -200,7 +196,6 @@ def edit(id):
 
 @app.route("/delete/<int:id>")
 def delete(id):
-    access()
     is_teamlead()
     con, cur=conn()
     cur.execute(f"DELETE FROM Tasks WHERE id={id} ;")
