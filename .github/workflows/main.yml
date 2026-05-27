@@ -19,7 +19,7 @@ jobs:
 
           # Пример однолинейного простого скрипта shell
           - name: Run a one-line script
-            run: echo Hello, world!
+            run: echo Helo, world!
 
           # Пример многолинейного скрипта shell
           - name: Run a multi-line script
